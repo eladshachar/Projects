@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.js"
+            crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href = "style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="user-container"> </div>
+        <div class="quote-container"></div>
+        <div class="content-container">
+            <div class="pokemon-container"></div>	
+            <div class="meat-container"></div>
+        </div>
+        <div class="friends">	
+            <h4>Friends</h4>	
+            <div class="friends-container">	
+            </div>	
+        </div>
+        <button class ="buttons" id="button">Generate User</button>
+        <button class ="extention-buttons" id="save-user">Save User Page</button>
+        <button class ="extention-buttons" id="load-user">Load User Page</button>
+    </div>
+    
+    <script id="user-template" type="text/x-handlebars-template">
+        <img id="user-image" src="{{mainUser.userImage}}">
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="data.js"></script>
+    <script src="renderer.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>
