@@ -1,21 +1,43 @@
+let currentProfile = new Info
+
 $("#button").on("click", async function(){
-    getUsers().then(()=>
-        renderUser()
+    let info = new Info 
+    
+    getUsers(info).then(()=>
+        renderUser(info)
     ) 
 
-    getQuote().then( ()=>
-        renderQuote()
+    getQuote(info).then( ()=>
+        renderQuote(info)
     )
 
-    getPoke().then( ()=>
-       renderPoke()
+    getPoke(info).then( ()=>
+       renderPoke(info)
     )
 
-    getMeat().then( ()=>
-       renderMeat()
+    getMeat(info).then( ()=>
+       renderMeat(info)
     )
+
+    renderSavedUsers()
+
+    currentProfile = info
 })
 
 $("#save-user").on("click", function(){
-    window.localStorage.setItem(info.mainUser.userText ,JSON.stringify(info))
+
+    window.localStorage.setItem(currentProfile.mainUser.userName ,JSON.stringify(currentProfile))
+    renderSavedUsers()
 })
+
+$("#load-user").on("click", function() {
+    let select = (document.getElementById("saved-users")) as HTMLSelectElement
+    let key = select.options[select.selectedIndex].text
+    currentProfile = JSON.parse(window.localStorage.getItem(key))
+    renderUser(currentProfile)
+    renderQuote(currentProfile)
+    renderPoke(currentProfile)
+    renderMeat(currentProfile)
+
+})
+

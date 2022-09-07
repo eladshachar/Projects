@@ -8,12 +8,20 @@
             src="https://code.jquery.com/jquery-3.6.0.js"
             crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
     <link rel="stylesheet" href = "style.css">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
         <div class="user-container"> </div>
+        <div id="dropdown-container">
+            <label for="saved-users">Saved Users:</label>
+            <select name="saved-users" id="saved-users">
+                <option value="user1">user1</option>
+                <option value="user2">user2</option>
+            </select>
+        </div>
         <div class="quote-container"></div>
         <div class="content-container">
             <div class="pokemon-container"></div>	
@@ -28,14 +36,25 @@
         <button class ="extention-buttons" id="save-user">Save User Page</button>
         <button class ="extention-buttons" id="load-user">Load User Page</button>
     </div>
-    
-    <script id="user-template" type="text/x-handlebars-template">
-        <img id="user-image" src="{{mainUser.userImage}}">
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+       
     <script src="data.js"></script>
     <script src="renderer.js"></script>
     <script src="controller.js"></script>
+
+    <script id="user-template" type="text/x-handlebars-template">
+        <img id="profile-pic" src="{{this.userImage}}"><p1 class="user-info">{{this.userName}}</p1><p1 class="user-info">{{this.userTown}}</p1>
+    </script>
+
+    <script id="quote-template" type="text/x-handlebars-template">
+        <p3 id=quote>{{this.quote}}</p3>
+    </script>
+
+    <script id="poke-template" type="text/x-handlebars-template">
+        <img id="pokemon-image" src="{{this.pokeImage}}"><p4 id="pokemon-text">Favorite Pokemon: {{properCase favorite}}</p4>
+    </script>
+
+    <script id="meat-template" type="text/x-handlebars-template">
+        <p5 class="meat-text">{{this}}</p5>
+    </script>
 </body>
 </html>

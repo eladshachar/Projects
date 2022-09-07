@@ -3,7 +3,8 @@ class Info{
     friendsList = ""
     mainUser = {
         userImage: "",
-        userText: "",
+        userTown: "",
+        userName: ""
     }
     poke = {
         pokeImage: "",
@@ -14,16 +15,16 @@ class Info{
 
 }
 
-let info = new Info
 
-const getUsers = async function(){
+const getUsers = async function(info: Info){
 
    await $.ajax({
       url: 'https://randomuser.me/api/?results=7',
       dataType: 'json',
       success: function(data) {
         info.mainUser.userImage = data.results[0].picture.thumbnail
-        info.mainUser.userText = `${data.results[0].name.first} ${data.results[0].name.last}<br>${data.results[0].location.city}, ${data.results[0].location.state}`
+        info.mainUser.userTown = `${data.results[0].location.city}, ${data.results[0].location.state}`
+        info.mainUser.userName = `${data.results[0].name.first} ${data.results[0].name.last}`
 
         info.friendsList = ""
         for(let i = 1; i<7; i++){
@@ -36,13 +37,13 @@ const getUsers = async function(){
 
 }
 
-const getQuote = async function(){
+const getQuote = async function(info: Info){
 
     info.quote = await $.get('https://api.kanye.rest')
     console.log(info.quote)
 }
 
-const getPoke = async function(){
+const getPoke = async function(info: Info){
     let random = Math.floor(Math.random()*949)
 
     await $.ajax({
@@ -57,7 +58,7 @@ const getPoke = async function(){
    
 }
 
-const getMeat = async function(){
+const getMeat = async function(info: Info){
 
     info.meat = await $.get('https://baconipsum.com/api/?type=all-meat&paras=5&format=text')
 }

@@ -8,11 +8,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+let currentProfile = new Info;
 $("#button").on("click", function () {
     return __awaiter(this, void 0, void 0, function* () {
-        getUsers().then(() => renderUser());
-        getQuote().then(() => renderQuote());
-        getPoke().then(() => renderPoke());
-        getMeat().then(() => renderMeat());
+        let info = new Info;
+        getUsers(info).then(() => renderUser(info));
+        getQuote(info).then(() => renderQuote(info));
+        getPoke(info).then(() => renderPoke(info));
+        getMeat(info).then(() => renderMeat(info));
+        renderSavedUsers();
+        currentProfile = info;
     });
+});
+$("#save-user").on("click", function () {
+    window.localStorage.setItem(currentProfile.mainUser.userName, JSON.stringify(currentProfile));
+    renderSavedUsers();
+});
+$("#load-user").on("click", function () {
+    let select = (document.getElementById("saved-users"));
+    let key = select.options[select.selectedIndex].text;
+    currentProfile = JSON.parse(window.localStorage.getItem(key));
+    renderUser(currentProfile);
+    renderQuote(currentProfile);
+    renderPoke(currentProfile);
+    renderMeat(currentProfile);
 });

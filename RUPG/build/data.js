@@ -13,7 +13,8 @@ class Info {
         this.friendsList = "";
         this.mainUser = {
             userImage: "",
-            userText: "",
+            userTown: "",
+            userName: ""
         };
         this.poke = {
             pokeImage: "",
@@ -23,15 +24,15 @@ class Info {
         this.meat = "";
     }
 }
-let info = new Info;
-const getUsers = function () {
+const getUsers = function (info) {
     return __awaiter(this, void 0, void 0, function* () {
         yield $.ajax({
             url: 'https://randomuser.me/api/?results=7',
             dataType: 'json',
             success: function (data) {
                 info.mainUser.userImage = data.results[0].picture.thumbnail;
-                info.mainUser.userText = `${data.results[0].name.first} ${data.results[0].name.last}<br>${data.results[0].location.city}, ${data.results[0].location.state}`;
+                info.mainUser.userTown = `${data.results[0].location.city}, ${data.results[0].location.state}`;
+                info.mainUser.userName = `${data.results[0].name.first} ${data.results[0].name.last}`;
                 info.friendsList = "";
                 for (let i = 1; i < 7; i++) {
                     info.friendsList += `<br>${data.results[i].name.first} ${data.results[i].name.last}`;
@@ -41,13 +42,13 @@ const getUsers = function () {
         console.log(info.mainUser.userImage);
     });
 };
-const getQuote = function () {
+const getQuote = function (info) {
     return __awaiter(this, void 0, void 0, function* () {
         info.quote = yield $.get('https://api.kanye.rest');
         console.log(info.quote);
     });
 };
-const getPoke = function () {
+const getPoke = function (info) {
     return __awaiter(this, void 0, void 0, function* () {
         let random = Math.floor(Math.random() * 949);
         yield $.ajax({
@@ -61,7 +62,7 @@ const getPoke = function () {
         });
     });
 };
-const getMeat = function () {
+const getMeat = function (info) {
     return __awaiter(this, void 0, void 0, function* () {
         info.meat = yield $.get('https://baconipsum.com/api/?type=all-meat&paras=5&format=text');
     });

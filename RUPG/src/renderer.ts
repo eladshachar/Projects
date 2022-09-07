@@ -1,34 +1,55 @@
-let renderFriendsList = function(){
+let renderFriendsList = function(info: Info){
     $(".friends-container").empty()
     $(".friends-container").html(info.friendsList)
 }
 
-let renderUser = function(): void{
+let renderUser = function(info: Info): void{
    $(".user-container").empty()
    const source = $("#user-template").html()
-   const template = Handlebars.compile(source)
-   const someHTML = template({info})
+   const template = Handlebars.compile(source) 
+   const someHTML = template(info.mainUser)
    console.log(someHTML)
    $(".user-container").append(someHTML)
-
-   //$(".user-container").append(`<img id=\"profile-pic\" src=\"${info.mainUser.userImage}\">`)
-   //$(".user-container").append(`<p1 class=\"user-info\">${info.mainUser.userText}</p1>`)
-   renderFriendsList()
+   renderFriendsList(info)
 }
 
-let renderQuote = function(){
+let renderQuote = function(info: Info){
     $(".quote-container").empty()
-    $(".quote-container").append(`<p3 id=\"quote\">${info.quote.quote}</p3>`)
+    const source = $("#quote-template").html()
+    const template = Handlebars.compile(source) 
+    const someHTML = template(info.quote)
+    console.log(someHTML)
+    $(".quote-container").append(someHTML)
 }
 
-let renderPoke = function(){
+Handlebars.registerHelper("properCase", function(text){
+    let newText = text.charAt(0).toUpperCase() + text.substring(1, text.length).toLowerCase()
+    return newText
+})
+
+let renderPoke = function(info: Info){
     $(".pokemon-container").empty()
-    $(".pokemon-container").append(`<img id=\"pokemon-image\" src=\"${info.poke.pokeImage}\">`)
-    $(".pokemon-container").append(`<p4 id=\"pokemon-text\">Favorite Pokemon: ${info.poke.favorite}</p4>`)
+    const source = $("#poke-template").html()
+    const template = Handlebars.compile(source) 
+    const someHTML = template(info.poke)
+    console.log(someHTML)
+    $(".pokemon-container").append(someHTML)  
 }
 
-let renderMeat = function(){
+let renderMeat = function(info: Info){
     $(".meat-container").empty()
-    $(".meat-container").append(`<p5 class=\"meat-text\">${info.meat}</p5>`)
+    const source = $("#meat-template").html()
+    const template = Handlebars.compile(source) 
+    const someHTML = template(info.meat)
+    console.log(someHTML)
+    $(".meat-container").append(someHTML)    
 }
 
+let renderSavedUsers = function(){
+    $("#saved-users").empty()
+
+    for(let i=0, len = localStorage.length; i<len; i++){
+       let item = (JSON.parse(localStorage.getItem(localStorage.key(i)))).mainUser.userName    
+       $("#saved-users").append(`<option>${item}</option>`)
+    }
+}

@@ -10,6 +10,8 @@
   "license": "ISC",
   "devDependencies": {
     "@types/handlebars-helpers": "^0.5.3",
-    "@types/jquery": "^3.5.14"
+    "@types/jest": "^29.0.0",
+    "@types/jquery": "^3.5.14",
+    "ts-jest": "^28.0.8"
   }
 }
