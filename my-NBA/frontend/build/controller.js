@@ -42,6 +42,17 @@ $("body").on("click", ".delete-button", function () {
         let personId = $(this).closest('.player').attr('id');
         console.log(personId);
         let players = yield removePlayer(personId);
+        if (dreamTeamDisplay) {
+            players = yield getDreamTeam();
+        }
         renderPlayers(players);
+    });
+});
+$("body").on("click", ".statistics", function () {
+    return __awaiter(this, void 0, void 0, function* () {
+        const personId = $(this).closest('.player').attr('id');
+        let playerStats = yield getStats(personId);
+        renderStats(personId, playerStats);
+        console.log(playerStats);
     });
 });

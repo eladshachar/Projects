@@ -41,3 +41,10 @@ const getDreamTeam = function () {
         return players;
     });
 };
+const getStats = function (personId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let playerStats;
+        playerStats = yield $.get(`http://127.0.0.1:8000/stats/${personId}`);
+        return playerStats;
+    });
+};

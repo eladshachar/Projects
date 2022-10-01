@@ -5,11 +5,19 @@
 }
 
 .player{
-    min-height: 410px;
+    min-height: 450px;
     background-color: #e67e22;
     text-align: center;
 }
 
 img {
     max-width:100%;
+}
+
+.hide{
+    display: none;
+}
+
+.show{
+    display: block;
 }

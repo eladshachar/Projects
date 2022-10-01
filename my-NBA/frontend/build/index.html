@@ -76,11 +76,16 @@
                     {{else}}
                         <button class="add-button">Add to Dream Team</button>
                     {{/if}}
+                    <button class="statistics">Get Statistics</button>
+                    <div id="{{personId}}-stats"></div>
                 </div>
             </div>   
         {{/each}}
     </script>
 
+    <script id = "statsTemplate" type = "text/x-handlebars-template">
+        <p>assists per game: {{assists_per_game}}, blocks per game: {{blocks_per_game}}, points per game: {{points_per_game}}, rebounds per game: {{rebounds_per_game}}, steals per game: {{steals_per_game}} </p>
+    </script>
     
 </body>
 </html>

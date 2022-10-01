@@ -34,3 +34,11 @@ const getDreamTeam = async function() {
 
     return players
 }
+
+const getStats = async function(personId:string){
+    let playerStats: JSON
+    
+    playerStats = await $.get(`http://127.0.0.1:8000/stats/${personId}`)
+
+    return playerStats
+}

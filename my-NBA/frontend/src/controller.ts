@@ -31,5 +31,17 @@ $("body").on("click", ".delete-button", async function() {
     let personId = $(this).closest('.player').attr('id')
     console.log(personId)
     let players = await removePlayer(personId)
+
+    if(dreamTeamDisplay){
+        players = await getDreamTeam()
+    }
+
     renderPlayers(players)
 })
+
+$("body").on("click", ".statistics", async function() {
+   const personId = $(this).closest('.player').attr('id')
+   let playerStats = await getStats(personId)
+   renderStats(personId ,playerStats)
+   console.log(playerStats)
+}

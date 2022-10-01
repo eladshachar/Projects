@@ -1,4 +1,5 @@
 from dis import dis
+from urllib import response
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import json
@@ -99,9 +100,19 @@ async def display_dream_team():
 
     displayed_players = list(dream_team.values())
 
-    #displayed_players = [player for player in displayed_players if player['dreamTeamMember'] == True]
-
     return displayed_players
+
+@app.get("/stats/{personId}")
+async def display_stats(personId):
+    global cached_players
+
+    firstName = cached_players[personId]['firstName']
+    lastName = cached_players[personId]['lastName']
+
+    result = requests.get(f'https://nba-players.herokuapp.com/players-stats/{lastName}/{firstName}')
+    players = result.json()
+
+    return players
 
 
 if __name__ == "__main__":
