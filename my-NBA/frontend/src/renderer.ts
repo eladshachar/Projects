@@ -5,3 +5,12 @@ const renderPlayers = function(players: JSON): void{
     const HTML = template({players: players})
     $("#players-container").append(HTML)
 }
+
+const renderStats = function(personId: string, playerStats: JSON): void{
+    const rawtemplate = $("#statsTemplate").html()
+    const template = Handlebars.compile(rawtemplate)
+    const HTML = template(playerStats)
+    $(`#${personId}-stats`).html("")
+    $(`#${personId}-stats`).append(HTML)
+    $(`#${personId}-stats`).toggleClass("show")
+}
