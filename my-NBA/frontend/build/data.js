@@ -23,14 +23,26 @@ const getPlayers = function (team, year, activeFilter) {
 const addPlayer = function (personId) {
     return __awaiter(this, void 0, void 0, function* () {
         let players;
-        players = yield $.get(`http://127.0.0.1:8000/dream-team/add/${personId}`);
+        players = yield $.ajax({
+            url: `http://127.0.0.1:8000/dream-team/add/${personId}`,
+            type: 'PUT',
+            success: function (result) {
+                return result;
+            }
+        });
         return players;
     });
 };
 const removePlayer = function (personId) {
     return __awaiter(this, void 0, void 0, function* () {
         let players;
-        players = yield $.get(`http://127.0.0.1:8000/dream-team/delete/${personId}`);
+        players = yield $.ajax({
+            url: `http://127.0.0.1:8000/dream-team/delete/${personId}`,
+            type: 'DELETE',
+            success: function (result) {
+                return result;
+            }
+        });
         return players;
     });
 };

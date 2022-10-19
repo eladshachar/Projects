@@ -44,4 +44,4 @@ $("body").on("click", ".statistics", async function() {
    let playerStats = await getStats(personId)
    renderStats(personId ,playerStats)
    console.log(playerStats)
-}
+})

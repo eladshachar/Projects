@@ -58,7 +58,7 @@ async def get_players(team, year, filter_active: bool = False):
     return filtered_players
 
 
-@app.get("/dream-team/add/{personId}")
+@app.put("/dream-team/add/{personId}")
 async def add_player(personId):
     global cached_players
     global displayed_players
@@ -72,7 +72,7 @@ async def add_player(personId):
 
     return displayed_players
 
-@app.get("/dream-team/delete/{personId}")
+@app.delete("/dream-team/delete/{personId}")
 async def delete_player(personId):
     global cached_players
     global displayed_players

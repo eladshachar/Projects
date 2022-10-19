@@ -14,7 +14,13 @@ const getPlayers = async function(team: string, year: string, activeFilter: bool
 const addPlayer = async function(personId:string) {
     let players: JSON
 
-    players = await $.get(`http://127.0.0.1:8000/dream-team/add/${personId}`)
+    players = await $.ajax({
+        url: `http://127.0.0.1:8000/dream-team/add/${personId}`,
+        type: 'PUT',
+        success: function(result) {
+            return result
+        }
+    });
 
     return players
 }
@@ -22,7 +28,13 @@ const addPlayer = async function(personId:string) {
 const removePlayer = async function(personId:string) {
     let players: JSON
 
-    players = await $.get(`http://127.0.0.1:8000/dream-team/delete/${personId}`)
+    players = await $.ajax({
+        url: `http://127.0.0.1:8000/dream-team/delete/${personId}`,
+        type: 'DELETE',
+        success: function(result) {
+            return result
+        }
+    });
 
     return players
 }

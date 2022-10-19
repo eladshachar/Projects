@@ -10,7 +10,7 @@ const renderStats = function (personId, playerStats) {
     const rawtemplate = $("#statsTemplate").html();
     const template = Handlebars.compile(rawtemplate);
     const HTML = template(playerStats);
-    $(`#${personId}-stats`).html("");
-    $(`#${personId}-stats`).append(HTML);
-    $(`#${personId}-stats`).toggleClass("show");
+    $(`#${personId}-stats-display`).html("");
+    $(`#${personId}-stats-display`).append(HTML);
+    $(`#${personId}-stats-display`).toggleClass("show");
 };
